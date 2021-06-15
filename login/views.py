@@ -1,4 +1,7 @@
 from django.shortcuts import render
 
+
+"""
 def sign_in(request):
-    pass
+    return render(request, 'login.html')
+"""
