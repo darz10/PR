@@ -1,13 +1,18 @@
 {% load static %}
 {% load socialaccount %}
+
+
 <!DOCTYPE html>
  <html>
  <head>
-	 <title>Login by socialnetwork</title>
+	 <title></title>
 	 <meta charset="UTF-8"/>
- </head>
-	 <body>
-         <button type="submit">sign in by Vkontakte</button>
-         <button type="submit">sign in by Facebook</button>
-	 </body>
- </html>
+</head>
+<body>
+    <a href="{% provider_login_url "VK" %}"><button type="submit">VK</button></a>
+    
+    <a href="{% provider_login_url "facebook" method="oauth2" %}"><button type="submit">Facebook</button></a>
+
+    
+</body>
+</html>
