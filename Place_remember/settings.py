@@ -27,15 +27,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+
     'login',
     'impression',
 
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.vk',
     'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.vk',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -60,6 +62,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -71,6 +74,7 @@ WSGI_APPLICATION = 'Place_remember.wsgi.application'
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
+
 ]
 
 
@@ -130,5 +134,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SITE_ID = 1
 
+ACCOUNT_LOGOUT_REDIRECT_URL = 'login/'
+
 LOGIN_REDIRECT_URL = '/'
-ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = '/'
