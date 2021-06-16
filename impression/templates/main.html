@@ -1,11 +1,19 @@
 {% extends 'wrapper.html' %}
 
-{% title block %}
+{% block title %}
     Impression
 {% endblock %}
 {% block content%}
     <form method="POST">
-        <h3>У вас нет ни одного воспоминания</h3>
+        {% csrf_token %}
+        {% if places %}
+            {% for place in places %}
+                <p>{{place.first_name}}</p>
+                <p>{{place.photo}}</p>
+            {% endfor %}
+        {% else %}
+            <h3>У вас нет ни одного воспоминания</h3>
+        {% endif %}
         <button type="submit">Добавить воспоминание</button>
     </form>
-{% endblock%}
+{% endblock%}   

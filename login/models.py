@@ -1,9 +1,12 @@
+from django.contrib.auth.base_user import AbstractBaseUser
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 
-class Profile(models.Model):
-    """Модель пользователя """
-    
-    name_user = models.CharField(verbose_name='Имя пользователя', max_length=100)
-    photo_user = models.ImageField(verbose_name='Фотография пользователя', upload_to='media/photo_user/')
-    
+class Profile(AbstractUser):
+    """Абстрактная модель пользователя"""
+
+    avatar_url = models.CharField(verbose_name='URL фотографии пользователя', max_length=256, blank=True, null=True)
+
+    def __str__(self):
+        return self.first_name
