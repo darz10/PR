@@ -9,10 +9,18 @@
 	 <meta charset="UTF-8"/>
 </head>
 <body>
-    <a href="{% provider_login_url "VK" %}"><button type="submit">VK</button></a>
-    
-    <a href="{% provider_login_url "facebook" method="oauth2" %}"><button type="submit">Facebook</button></a>
-
-    
+    <div class="socialnetworks">
+        <div class="butt-1">
+            <a href="{% provider_login_url "vk" method="oauth2" %}"><button type="submit">VK</button></a>
+        </div>
+        <div class="butt-2">
+            <a href="{% provider_login_url "facebook" method="oauth2" %}"><button type="submit">Facebook</button></a>
+        </div>
+    </div>
+        <style>
+            body{
+                background-color: aquamarine;
+            }
+        </style>
 </body>
 </html>
