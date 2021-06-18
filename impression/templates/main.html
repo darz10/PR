@@ -6,6 +6,7 @@
 {% block content%}
     <form method="POST">
         {% csrf_token %}
+        <h2>{{user.first_name}}</h2>
         {% if places %}
             {% for place in places %}
                 <p>{{place.first_name}}</p>
@@ -14,6 +15,9 @@
         {% else %}
             <h3>У вас нет ни одного воспоминания</h3>
         {% endif %}
-        <button type="submit">Добавить воспоминание</button>
+        <a href="{% url 'create_impression' %}"><button type="submit">Добавить воспоминание</button></a>
+        {% for place in places %}
+            <p>{{place}} {{place.user}}</p>
+        {% endfor %}
     </form>
-{% endblock%}   
+{% endblock%}
