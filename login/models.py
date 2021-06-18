@@ -9,4 +9,5 @@ class Profile(AbstractUser):
     avatar_url = models.CharField(verbose_name='URL фотографии пользователя', max_length=256, blank=True, null=True)
 
     def __str__(self):
-        return self.first_name
+        return '{} {}'.format(self.username, self.first_name)
+

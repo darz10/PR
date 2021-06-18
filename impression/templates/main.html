@@ -4,20 +4,27 @@
     Impression
 {% endblock %}
 {% block content%}
-    <form method="POST">
-        {% csrf_token %}
-        <h2>{{user.first_name}}</h2>
-        {% if places %}
+    <div class="header text-end">
+        <a href="{% url 'account_logout' %}"><p>Выйти</p></a>
+    </div>
+    <div class="conteiner">
+        <div class="text-center">
+            <h2>{{user.first_name}}</h2>
+            <div class="col-md-6 text-center">
+                <img src="{{photo}}" alt="" width="150" height="150" style="border-radius: 50%">
+            </div>
+            {% if places %}
+                {% for place in places %}
+                    <p>{{place.first_name}}</p>
+                    <p>{{place.photo}}</p>
+                {% endfor %}
+            {% else %}
+                <h3>У вас нет ни одного воспоминания</h3>
+            {% endif %}
+            <a href="{% url 'create_impression' %}"><button type="submit">Добавить воспоминание</button></a>
             {% for place in places %}
-                <p>{{place.first_name}}</p>
-                <p>{{place.photo}}</p>
+                <p>{{place}} {{place.user}}</p>
             {% endfor %}
-        {% else %}
-            <h3>У вас нет ни одного воспоминания</h3>
-        {% endif %}
-        <a href="{% url 'create_impression' %}"><button type="submit">Добавить воспоминание</button></a>
-        {% for place in places %}
-            <p>{{place}} {{place.user}}</p>
-        {% endfor %}
-    </form>
+        </div>
+    </div>
 {% endblock%}

@@ -1,0 +1,13 @@
+body{
+    background: linear-gradient(#dceb59, #65d481);
+}
+
+.create-form{
+    margin-top: 5%;
+}
+
+.map{
+    margin-left: 30%;
+    margin-top  : 20px;
+}       
+
