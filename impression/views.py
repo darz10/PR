@@ -54,7 +54,7 @@ def creating_impression(request):
             location = getting_location(location_)
             map = marking_location(location)
             response.location = location
-            # response.save()
+            response.save()
     map = map._repr_html_()
     context = {
         'map':map,
@@ -69,12 +69,13 @@ def updating_impression(request, pk):
     """Изменение существующих записей"""
 
     data = Impression.objects.get(id=pk)
-    coordinate = data.location
-    print(coordinate)
+    adress = data.location
+    map = creating_map()
+    coordinate = getting_location(adress)
     form = ImpressionForm(instance=data)
     map = marking_location(coordinate)
-    if request.method == 'PUT':
-        form = ImpressionForm(request.PUT, inctance=data)
+    if request.method == 'POST':
+        form = ImpressionForm(request.POST, instance=data)
         if form.is_valid():
             form.save()
             return redirect('list_places_remember')
@@ -82,4 +83,4 @@ def updating_impression(request, pk):
         'form':form,
         'map':map,
     }
-    return render(request, 'update_impression.html', context)
+    return render(request, 'update_impression.html', context)   
