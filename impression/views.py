@@ -3,7 +3,7 @@ from .forms import ImpressionForm
 from login.models import Profile
 from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
-from django.views import View
+from django.views.generic.edit import DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from allauth.socialaccount.models import SocialAccount
@@ -84,3 +84,9 @@ def updating_impression(request, pk):
         'map':map,
     }
     return render(request, 'update_impression.html', context)   
+
+
+class DeleteImpressionView(DeleteView):
+    model = Impression
+    template_name = 'delete_impression.html'
+    success_url = '/'

@@ -1,0 +1,13 @@
+{% extends 'wrapper.html' %}
+
+{% block title %}
+    Delete impression
+{% endblock %}
+
+{% block content %}
+    <form method="POST">
+    	{% csrf_token %}
+    	<h3>Do you wanna delete impression with title {{place.name_impression}}</h3>
+        <button type="submit" class="btn btn-warning">Удалить</button></a>
+    </form>
+{% endblock %}
