@@ -1,0 +1,17 @@
+{% extends 'wrapper.html' %}
+
+{% block title %}
+    Update impression
+{% endblock %}
+
+{% block content %}
+    <form method="PUT">
+        {% csrf_token %}
+        {{form.as_p}}
+        <div class="d-grid gap-2 d-md-block">
+            <button type="submit" class="btn btn-primary btn-lg">Save</button>
+        </div>
+        {{map|safe}}
+    </form>
+
+{% endblock %}  

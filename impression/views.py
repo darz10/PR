@@ -1,20 +1,23 @@
+from .models import Impression
+from .forms import ImpressionForm
+from login.models import Profile
 from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Impression
-from login.models import Profile
-from .forms import ImpressionForm
-from geopy.geocoders import Nominatim
-import folium
+from django.contrib.auth.decorators import login_required
 from allauth.socialaccount.models import SocialAccount
+from .map import creating_map, getting_location, marking_location
 
 
 def getting_socialaccount_photo(request):
     """Получение фотографии из социальной сети с помощью которой авторизовался пользователь """
 
-    extra = SocialAccount.objects.get(user=request.user)
-    photo = extra.extra_data['photo_big']
+    try:
+        extra = SocialAccount.objects.get(user=request.user)
+        photo = extra.extra_data['photo_big']
+    except KeyError:
+        photo = None
     return photo
 
 
@@ -34,11 +37,11 @@ class ImpressionList(LoginRequiredMixin, ListView):
         return render(request, 'main.html', context)
 
 
+@login_required(login_url='sign_in')
 def creating_impression(request):
     """Создание воспоминания"""
 
-    map = folium.Map(location=[56.8324, -299.4488], width=600, height=400, on_touch=True, popup='more info', zoom_start=5)
-    geolocator = Nominatim(user_agent='impression')
+    map = creating_map()
     form = ImpressionForm()
     location = None
 
@@ -48,15 +51,10 @@ def creating_impression(request):
             response = form.save(commit=False)
             response.user = request.user
             location_ = form.cleaned_data.get('location')
-            location = geolocator.geocode(location_)
-            print(location)
-            l_lat = float(location.latitude)
-            l_lon = float(location.longitude)        
-            map = folium.Map(location=[56.8324, -299.4488], width=800, height=500, on_touch=True, popup='more info', zoom_start=5)
-            folium.Marker([l_lat, l_lon], tooltip='click here for more', icon=folium.Icon(color='red')).add_to(map)
+            location = getting_location(location_)
+            map = marking_location(location)
             response.location = location
             # response.save()
-        #return redirect('create_impression')
     map = map._repr_html_()
     context = {
         'map':map,
@@ -66,9 +64,22 @@ def creating_impression(request):
     return render(request, 'create_impression.html', context)
 
 
+@login_required(login_url='sign_in')
+def updating_impression(request, pk):
+    """Изменение существующих записей"""
 
-
-"""
-folium.ClickForMarker(popup='Waypoint').add_to(map)
-folium.LatLngPopup().add_to(map)
-"""
+    data = Impression.objects.get(id=pk)
+    coordinate = data.location
+    print(coordinate)
+    form = ImpressionForm(instance=data)
+    map = marking_location(coordinate)
+    if request.method == 'PUT':
+        form = ImpressionForm(request.PUT, inctance=data)
+        if form.is_valid():
+            form.save()
+            return redirect('list_places_remember')
+    context = {
+        'form':form,
+        'map':map,
+    }
+    return render(request, 'update_impression.html', context)

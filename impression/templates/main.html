@@ -5,14 +5,18 @@
 {% endblock %}
 {% block content%}
     <div class="header text-end">
-        <a href="{% url 'account_logout' %}"><p>Выйти</p></a>
+        <a href="{% url 'account_logout' %}"><button type="button" class="btn btn-danger">Выйти</button></a>
     </div>
     <div class="conteiner">
         <div class="text-center">
-            <h2>{{user.first_name}}</h2>
-            <div class="col-md-6 text-center">
-                <img src="{{photo}}" alt="" width="150" height="150" style="border-radius: 50%">
-            </div>
+            {% if photo is None %}
+                <h1>{{user.first_name}}</h1>
+            {% else %}
+                <h1>{{user.first_name}}</h1>    
+                <div class="col-md-6 text-center">
+                    <img src="{{photo}}" alt="" width="150" height="150" style="border-radius: 50%">
+                </div>
+            {% endif %}
             {% if places %}
                 {% for place in places %}
                     <p>{{place.first_name}}</p>
@@ -21,7 +25,9 @@
             {% else %}
                 <h3>У вас нет ни одного воспоминания</h3>
             {% endif %}
-            <a href="{% url 'create_impression' %}"><button type="submit">Добавить воспоминание</button></a>
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <a href="{% url 'create_impression' %}"><button class="btn btn-primary" type="button">Добавить воспоминание</button></a>
+              </div>
             {% for place in places %}
                 <p>{{place}} {{place.user}}</p>
             {% endfor %}
