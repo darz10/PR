@@ -5,13 +5,14 @@
 {% endblock %}
 
 {% block content %}
-    <form method="POST">
-        {% csrf_token %}
-        {{form.as_p}}
-        <div class="d-grid gap-2 d-md-block">
-            <button type="submit" class="btn btn-primary btn-lg">Save</button>
-        </div>
-        {{map|safe}}
-    </form>
-
+    <div class='form-group text-center'>
+        <form method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <div class="d-grid gap-2 d-md-block">
+                <button type="submit" class="btn btn-primary btn-lg">Save</button>
+            </div>
+            {{map|safe}}
+        </form>
+    </div>
 {% endblock %}  

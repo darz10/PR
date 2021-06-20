@@ -7,4 +7,27 @@ body{
     background-position: 0%;
     min-height: 1500px;
     width: 100%;
+    font-family: ;
+}
 
+.card{
+    margin: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.col-md-50{
+    margin-top: 7px;
+    margin-bottom: 15px;
+}
+
+.d-grid{
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.btn{
+    margin-top: 10px;
+    margin-bottom: 8px;
+    margin-right: 15px;
+}

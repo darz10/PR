@@ -3,7 +3,6 @@ from .forms import ImpressionForm
 from django.contrib.auth import logout
 from login.models import Profile
 from django.shortcuts import render, redirect
-from django.views.generic.list import ListView
 from django.views.generic.edit import DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
@@ -22,22 +21,19 @@ def getting_socialaccount_photo(request):
     return photo
 
 
-class ImpressionList(LoginRequiredMixin, ListView):
-    """Список имеющихся воспоминаний"""
+def getting_list_impression(request):
+    """Список всех впечатлений"""
 
-    login_required = 'sign_in'
-
-    def get(self, request):
-        try:
-           photo = getting_socialaccount_photo(request)
-        except SocialAccount.DoesNotExist:
-            return redirect('login/')
-        queryset = Impression.objects.filter(user=request.user)
-        context = {
-            'places': queryset, 
-            'photo':photo
-        }
-        return render(request, 'main.html', context)
+    try:
+       photo = getting_socialaccount_photo(request)
+    except SocialAccount.DoesNotExist:
+        return redirect('login/')
+    queryset = Impression.objects.filter(user=request.user)
+    context = {
+        'places': queryset, 
+        'photo':photo
+    }
+    return render(request, 'main.html', context)
 
 
 @login_required(login_url='sign_in')
@@ -56,7 +52,6 @@ def creating_impression(request):
             location_ = form.cleaned_data.get('location')
             location = getting_location(location_)
             map = marking_location(location)
-            response.location = location
             response.save()
     map = map._repr_html_()
     context = {
@@ -82,22 +77,27 @@ def updating_impression(request, pk):
         if form.is_valid():
             form.save()
             return redirect('list_places_remember')
+    map = map._repr_html_()
     context = {
         'form':form,
         'map':map,
     }
     return render(request, 'update_impression.html', context)   
 
-
-class DeleteImpressionView(LoginRequiredMixin, DeleteView):
+    
+@login_required(login_url='sign_in')
+def deleting_impression(request, pk):
     """Удаление выбранной записи"""
 
-    model = Impression
-    template_name = 'delete_impression.html'
-    success_url = '/'
-    login_required = 'sign_in'
+    data = Impression.objects.get(id=pk)
+    if request.method == "POST":
+        data.delete()
+        return redirect('list_places_remember')
+    return render(request, 'delete_impression.html', {'place':data})
 
 
+
+@login_required(login_url='sign_in')
 def django_logout(request):
     """Выход из аккунта"""
 

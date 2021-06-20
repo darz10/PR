@@ -9,12 +9,14 @@
     <div class="conteiner">
         <div class="text-center">
             <div class="head-main">
-                <a href="{% url 'logout_page' %}"><button type="button" class="btn btn-danger">Выйти</button></a>
+                <div class="d-flex justify-content-end">
+                    <a href="logout/"><button type="button" class="btn btn-danger">Выйти</button></a>
+                </div>
                 {% if photo is None %}
                     <h1>{{user.first_name}}</h1>
                 {% else %}
                     <h1>{{user.first_name}}</h1>    
-                    <div class="col-md-6 text-center">
+                    <div class="col-md-50">
                         <img src="{{photo}}" alt="" width="150" height="150" style="border-radius: 50%">
                     </div>
                 {% endif %}
@@ -35,7 +37,9 @@
                     </div>  
                     {% endfor %}
                 {% else %}
-                    <h3>У вас нет ни одного воспоминания</h3>
+                    <div class="position-absolute top-50 start-50 translate-middle">
+                        <h3>У вас нет ни одного воспоминания</h3>
+                    </div>
                 {% endif %}
             </div>
         </div>
