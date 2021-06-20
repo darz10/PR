@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+    <a href="{% url 'list_places_remember' %}" ><h3>Главная страница</h3></a>
     <div class='form-group text-center'>
         <form method="POST">
             {% csrf_token %}
@@ -12,7 +13,9 @@
             <div class="d-grid gap-2 d-md-block">
                 <button type="submit" class="btn btn-primary btn-lg">Save</button>
             </div>
-            {{map|safe}}
+            <div class="map text-center">
+                {{map|safe}}
+            </div>
         </form>
     </div>
 {% endblock %}  

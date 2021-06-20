@@ -4,43 +4,52 @@
     Impression
 {% endblock %}
 {% block content%}
-    <div class="header text-end">
+<div class="header-box">
+    <div class="d-inline-flex p-2 bd-highlight">
+            <h1>Impression</h1>
+        </div>
+        <div class="d-flex justify-content-end">
+            <a href="logout/"><button type="button" class="btn btn-danger">Выйти</button></a>
+        </div>
+        <div class="d-flex justify-content-end">
+            {% if photo is None %}
+                <h1>{{user.first_name}}</h1>    
+            {% else %}
+                <h1>{{user.first_name}}</h1>    
+                <div class="col-md-50">
+                    <img src="{{photo}}" alt="" width="150" height="150" style="border-radius: 50%">
+                </div>
+            {% endif %}
+        </div>
     </div>
     <div class="conteiner">
         <div class="text-center">
             <div class="head-main">
-                <div class="d-flex justify-content-end">
-                    <a href="logout/"><button type="button" class="btn btn-danger">Выйти</button></a>
-                </div>
-                {% if photo is None %}
-                    <h1>{{user.first_name}}</h1>
-                {% else %}
-                    <h1>{{user.first_name}}</h1>    
-                    <div class="col-md-50">
-                        <img src="{{photo}}" alt="" width="150" height="150" style="border-radius: 50%">
-                    </div>
-                {% endif %}
                 <div class="d-grid gap-2 col-6 mx-auto">
-                    <a href="{% url 'create_impression' %}"><button class="btn btn-primary" type="button">Добавить воспоминание</button></a>
+                    <a href="{% url 'create_impression' %}"><button class="btn btn-primary" type="button" style="border-radius: 20px; width: 300px; height: 80px; font-size: 25px;">Добавить воспоминание</button></a>
                 </div>
             </div>
-            <div class="row">
-                {% if places %}
-                    {% for place in places %}
-                    <div class="card" style="width: 20rem; height: 12rem;">
-                        <div class="card-body">
-                          <h4 class="card-title">{{place.name_impression}}</h4>
-                          <p class="card-text">{{place.comment_impression}}</p>
-                          <a href="{% url 'update_impression' pk=place.pk %}" class="btn btn-primary">Изменить</a>
-                          <a href="{% url 'delete_impression' pk=place.pk %}"><button type="button" class="btn btn-warning">Удалить</button></a>
-                        </div>
-                    </div>  
-                    {% endfor %}
-                {% else %}
-                    <div class="position-absolute top-50 start-50 translate-middle">
-                        <h3>У вас нет ни одного воспоминания</h3>
+            <div class="conteiner-card">
+                <div class="d-flex justify-content-center">
+                    <div class="row">
+                        {% if places %}
+                            {% for place in places %}
+                            <div class="card" style="width: 20rem; height: 12rem; border: 3px solid rgb(90, 83, 83); border-radius: 20px; ">
+                                <div class="card-body">
+                                  <h4 class="card-title">{{place.name_impression}}</h4>
+                                  <p class="card-text">{{place.comment_impression}}</p>
+                                  <a href="{% url 'update_impression' pk=place.pk %}" class="btn btn-primary">Изменить</a>
+                                  <a href="{% url 'delete_impression' pk=place.pk %}"><button type="button" class="btn btn-warning">Удалить</button></a>
+                                </div>
+                            </div>  
+                            {% endfor %}
+                        {% else %}
+                            <div class="position-absolute top-50 start-50 translate-middle">
+                                <h3>У вас нет ни одного воспоминания</h3>
+                            </div>
+                        {% endif %}
                     </div>
-                {% endif %}
+                </div>
             </div>
         </div>
     </div>
