@@ -5,33 +5,20 @@
 {% endblock %}
 
 {% block content %}
-<div class="create-form">
-    <div class="conteiner">
-        <div class="text-center">
-                <form method="POST">
-                    {% csrf_token %}
-                    <a href="{% url 'list_places_remember' %}"><h3>Главная страница</h3></a>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Название:</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">Ваш коментарий: </label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Введите место: </label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" name="location">
-                    </div>
-                    {{form.as_p}}
-                    <div class="d-grid gap-2 d-md-block">
-                        <button type="submit" class="btn btn-primary btn-lg">Save</button>
-                    </div>
-                    <div class="map">
-                        {{map|safe}}
-                    </div>
-                </form>
-        </div>
+    <div class='form-group text-center'>
+        <form method="POST">
+            {% csrf_token %}
+            <a href="{% url 'list_places_remember' %}"><h3>Главная страница</h3></a>
+                {{form.as_p}}
+            <div class="d-grid gap-2 d-md-block">
+                <button type="submit" class="btn btn-primary btn-lg">Save</button>
+            </div>
     </div>
-</div>
+            <div class="map text-center">
+                {{map|safe}}
+            </div>
+        </form>
+    <style>
+
+    </style>
 {% endblock %}

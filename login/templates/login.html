@@ -1,15 +1,10 @@
-{% load static %}
+{% extends 'wrapper_auth.html' %}
 {% load socialaccount %}
 
-
-<!DOCTYPE html>
- <html>
- <head>
-	 <title>Sign in</title>
-	 <meta charset="UTF-8"/>
-</head>
-<body>
+{% block title%}Login{% endblock %}
+{% block content %}
     <div class="socialnetworks">
+        <h3>Начальная информация о проекте</h3>
         <div class="butt-1">
             <a href="{% provider_login_url "vk" %}"><button type="submit">Vk</button></a>
         </div>
@@ -17,10 +12,4 @@
             <a href="{% provider_login_url "facebook" %}"><button type="submit">Facebook</button></a>
         </div>
     </div>
-        <style>
-            body{
-                background-color: aquamarine;
-            }
-        </style>
-</body>
-</html>
+{% endblock %}

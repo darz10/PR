@@ -1,13 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Teko&display=swap');
+
+
 body{
-    background: linear-gradient(#dceb59, #65d481);
-}
-
-.create-form{
-    margin-top: 5%;
-}
-
-.map{
-    margin-left: 30%;
-    margin-top  : 20px;
-}       
+    background: linear-gradient(#dceb59, #65d481) no-repeat;
+    background-size: 100%;
+    background-position: 0%;
+    min-height: 1500px;
+    width: 100%;
 

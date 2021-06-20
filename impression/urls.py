@@ -1,4 +1,4 @@
-from .views import creating_impression, updating_impression
+from .views import creating_impression, updating_impression, django_logout
 from .views import ImpressionList, DeleteImpressionView
 from django.urls import path
 
@@ -7,5 +7,6 @@ urlpatterns = [
     path('create_impression/', creating_impression, name='create_impression'),
     path('update_impression/<int:pk>/', updating_impression, name='update_impression'),
     path('delete_impression/<int:pk>/', DeleteImpressionView.as_view(), name='delete_impression'),
+    path('logout/', django_logout, name='loguot_page')
 
 ]

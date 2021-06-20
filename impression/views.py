@@ -1,5 +1,6 @@
 from .models import Impression
 from .forms import ImpressionForm
+from django.contrib.auth import logout
 from login.models import Profile
 from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
@@ -95,3 +96,10 @@ class DeleteImpressionView(LoginRequiredMixin, DeleteView):
     template_name = 'delete_impression.html'
     success_url = '/'
     login_required = 'sign_in'
+
+
+def django_logout(request):
+    """Выход из аккунта"""
+
+    logout(request)
+    return redirect('sign_in')
