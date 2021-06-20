@@ -24,6 +24,8 @@ def getting_socialaccount_photo(request):
 class ImpressionList(LoginRequiredMixin, ListView):
     """Список имеющихся воспоминаний"""
 
+    login_required = 'sign_in'
+
     def get(self, request):
         try:
            photo = getting_socialaccount_photo(request)
@@ -86,7 +88,10 @@ def updating_impression(request, pk):
     return render(request, 'update_impression.html', context)   
 
 
-class DeleteImpressionView(DeleteView):
+class DeleteImpressionView(LoginRequiredMixin, DeleteView):
+    """Удаление выбранной записи"""
+
     model = Impression
     template_name = 'delete_impression.html'
     success_url = '/'
+    login_required = 'sign_in'
