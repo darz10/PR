@@ -1,4 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mate+SC&display=swap');
+
+
 body{
     background: url(images/impression.jpg) no-repeat;
     background-size: cover;
+}
+
+.btn{
+    margin: 30px;
+    border-radius: 20px;
+    font-family: 'Questrial', sans-serif;
+    font-size: 40px;
+    width: 300px;
+    height: 90px;
+
+
+}
+
+
+.intro{
+    margin-top: 50px;
+}
+
+
+
+h1, h2, h3, h4, h5, h6{
+    font-family: 'Mate SC', serif;   
 }

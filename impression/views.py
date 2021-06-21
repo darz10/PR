@@ -1,10 +1,7 @@
 from .models import Impression
 from .forms import ImpressionForm
 from django.contrib.auth import logout
-from login.models import Profile
 from django.shortcuts import render, redirect
-from django.views.generic.edit import DeleteView
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from allauth.socialaccount.models import SocialAccount
 from .map import creating_map, getting_location, marking_location
@@ -20,7 +17,7 @@ def getting_socialaccount_photo(request):
         photo = None
     return photo
 
-
+@login_required(login_url='sign_in')
 def getting_list_impression(request):
     """Список всех впечатлений"""
 

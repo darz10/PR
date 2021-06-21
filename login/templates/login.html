@@ -4,12 +4,12 @@
 {% block title%}Login{% endblock %}
 {% block content %}
     <div class="socialnetworks">
-        <h3>Начальная информация о проекте</h3>
-        <div class="d-grid gap-2 col-6 mx-auto">
-            <a href="{% provider_login_url "vk" %}"><button type="submit">Vk</button></a>
+        <div class="intro text-center">
+            <h3 style="font-size: 40px;"><b>Создавай свои впечатления с Impression</b></h3>
         </div>
-        <div class="d-grid gap-2 col-6 mx-auto">
-            <a href="{% provider_login_url "facebook" %}"><button type="submit">Facebook</button></a>
-        </div>
+        <div class="position-absolute top-50 start-50 translate-middle">
+                <a href="{% provider_login_url "vk" %}"><button type="button" class="btn btn-info btn-lg"><b>VK</b></button></a>
+                <a href="{% provider_login_url "facebook" %}"><button type="button" class="btn btn-info btn-lg"><b>Facebook</b></button></a>
+        </div>          
     </div>
 {% endblock %}

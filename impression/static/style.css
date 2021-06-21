@@ -74,3 +74,20 @@ h1, h2, h3, h4, h5, h6{
     background: linear-gradient(#dceb59, #65d481) no-repeat;
     margin-bottom: 10px;
 }
+
+.d-flex{
+    margin-right: 15px;
+}
+
+
+.cont-head{
+    width: 100%;
+    height: 70px;
+    background: linear-gradient(#dceb59, #65d481) no-repeat;
+    margin-bottom: 10px;
+}
+
+
+.map{
+    margin-left: 100px;
+}
