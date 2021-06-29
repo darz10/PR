@@ -8,6 +8,7 @@ class Impression(models.Model):
     name_impression = models.CharField(verbose_name='Название места', max_length=150)
     comment_impression = models.TextField(verbose_name='Коментарий о месте', max_length=400)
     location = models.CharField(verbose_name='Название места', max_length=100, blank=True, null=True )
-     
+    # // TODO сделать возможность добавлять изображение впечатлений
+    
     def __str__(self):
         return self.name_impression
