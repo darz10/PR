@@ -1,5 +1,4 @@
 django-allauth==0.44.0
-allauth-django==0.42.6
 asgiref==3.3.4
 branca==0.4.2
 certifi==2021.5.30
