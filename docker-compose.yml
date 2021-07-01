@@ -3,7 +3,6 @@ services:
   web:
     build: ./
     command: python manage.py runserver 0.0.0.0:8000
-    tty: true
     volumes:
       - .:/usr/src/app
     ports:
