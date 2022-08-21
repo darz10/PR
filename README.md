@@ -1,8 +1,29 @@
-This is an application for recording memories. The application supports authorization via social networks VK and Facebook. The project includes 2 applications app for auth by social networks and impression app. For start:
-git clone https://github.com/darz10/Places_Remember
-pip install -r requirements.txt
-python manage.py makemigrations
-python manage.py migrate
-python manage.py runserver
+# Place_remeber
 
-Open browser: localhost:8000/login/
+Приложение для создания воспомнинаий привязанных к месту и хранения их. В приложении существует авторизация через социальную сеть VK.  
+___
+
+## Запуск приложения
+```
+git clone https://github.com/darz10/Places_Remember
+```
+Создайте виртуальное окружение проекта
+```
+python3 -m virtualenv venv
+```
+Запустите созданное окружение командой
+```
+source venv/bin/activate
+```
+Загрузите все зависимости проекта
+```
+pip install -r requirements.txt
+```
+Установите миграции
+```
+python manage.py migrate
+```
+Запустите приложение
+```
+python manage.py runserver
+```
